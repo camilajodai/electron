@@ -1,6 +1,9 @@
-// console.log("Processo principal")
 
-const { app, BrowserWindow, nativeTheme, Menu, shell } = require('electron')
+
+const { app, BrowserWindow, nativeTheme, Menu, shell, ipcMain } = require('electron')
+
+// está relacionado ao preload.js
+const path = require('node:path')
 
 // janela principal
 const createWindow = () => {
@@ -11,7 +14,10 @@ const createWindow = () => {
     // resizable: false, //evitar o redimensionamento
     // titleBarStyle: 'hidden', //esconder barra de título e menu
     // autoHideMenuBar: true, //esconder menu
-    icon: './src/public/img/icon.png' //ícone
+    icon: './src/public/img/icon.png', //ícone
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js')
+    }
   })
 
   // iniciar a janela com o menu personalizado
@@ -99,3 +105,16 @@ const template = [
     ]
   }
 ]
+
+// Processos
+console.log("Processo principal")
+// exemplo 1: comando que só funciona no JS
+console.log(`Electron: ${process.versions.electron}`)
+// exeplo 2: recebimento de uma mensagem do renderer
+ipcMain.on('send-message', (event, message) => {
+  console.log(`Processo principal recebeu uma mensagem: ${message}`)
+})
+// exemplo 3: recebimento de um renderer de uma ação a ser executada
+ipcMain.on('open-about', () => {
+  aboutWindow()
+})

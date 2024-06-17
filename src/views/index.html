@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- o electron usa o título na janela -->
+    <!-- evitar ataques de Cross Site Scripting (injeção de dados)-->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'">
+
     <title>Tutorial Electron</title>
 </head>
+
 <body>
+    <p id="dataAtual"></p>
     <h1>Hello Electron</h1>
+    <button onclick="sobre()">Sobre</button>
+    <!-- renderização -->
+    <script src="./renderer.js"></script>
 </body>
+
 </html>

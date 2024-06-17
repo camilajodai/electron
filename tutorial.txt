@@ -30,3 +30,31 @@ Obs: alguns recursos precisam ser importados:
  shell
 
 Obs: o shell é usado no main para acessar recursos externos como links
+
+NPM INSTALL -> baixar bibliotecas existentes
+
+5) Processos (principal e renderização)
+    - Só pode existir um processo principal (main.js)
+    - Para criar um processo de renderização devemos ligar um documento JavaScript na página HTML
+    - Podemos usar um único processo de renderização em todas as páginas HTML, porém é recomendado usar um processo de renderização
+por documento HTML
+    - Por uma questão didática, o processo de renderização é o front-end da aplicação
+    - E o processo principal é o back-end da aplicação
+
+PRELOAD.JS (seguir a documentação para implementar)
+O preload.js é usado para:
+1- Expor a utilização do node e recursos do electron para o processo de renderização, melhorando o desempenho e a segurança
+2- Para situações onde você sabe que vai precisar de certos recursos e dados antes que o usuário solicite diretamente, tornando
+a experiência do usuário mais rápida e suave
+
+Obs: é possível tirar o contexto de isolamento e permitir a execução do node.js no processo de renderização
+
+IPC(inter-process communication)
+ipcMain (processo principal)
+ipcRenderer (processo de renderização)
+
+sintaxe do ipcMain e ipcRenderer (recebimento)
+ipcMain.on(()=>{})
+ipcRenderer.on(()=>{})
+
+Fluxo: ipcRenderer -> hello() -> main.js (ipcMain)
