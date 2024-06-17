@@ -27,18 +27,26 @@ const createWindow = () => {
 }
 
 //janela sobre
+let about // resolver bug de abertuda de varias janelas
+
 const aboutWindow = () => {
-  // nativeTheme.themeSource = 'dark'
-  const about = new BrowserWindow({
-    width: 360, //largura
-    height: 220,  //altura
-    resizable: false, //evitar o redimensionamento
-    // titleBarStyle: 'hidden', //esconder barra de título e menu
-    autoHideMenuBar: true, //esconder menu
-    icon: './src/public/img/icon.png' //ícone
-  })
+  // se a janela about não estiver aberta(bug 1)
+  if (!about) {
+    about = new BrowserWindow({
+      width: 360, //largura
+      height: 220,  //altura
+      resizable: false, //evitar o redimensionamento
+      autoHideMenuBar: true, //esconder menu
+      icon: './src/public/img/icon.png' //ícone
+    })
+  }
 
   about.loadFile('./src/views/sobre.html')
+  // reabrir a janela se estiver fechada
+  about.on('closed', () => {
+    about = null
+  })
+
 }
 
 // executar de forma assíncrona a aplicação
