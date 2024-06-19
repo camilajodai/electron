@@ -36,16 +36,18 @@ NPM INSTALL -> baixar bibliotecas existentes
 5) Processos (principal e renderização)
     - Só pode existir um processo principal (main.js)
     - Para criar um processo de renderização devemos ligar um documento JavaScript na página HTML
-    - Podemos usar um único processo de renderização em todas as páginas HTML, porém é recomendado usar um processo de renderização
-por documento HTML
+    - Podemos usar um único processo de renderização em todas as páginas HTML, 
+    porém é recomendado usar um processo de renderização por documento HTML
     - Por uma questão didática, o processo de renderização é o front-end da aplicação
     - E o processo principal é o back-end da aplicação
 
 PRELOAD.JS (seguir a documentação para implementar)
 O preload.js é usado para:
-1- Expor a utilização do node e recursos do electron para o processo de renderização, melhorando o desempenho e a segurança
-2- Para situações onde você sabe que vai precisar de certos recursos e dados antes que o usuário solicite diretamente, tornando
-a experiência do usuário mais rápida e suave
+1- Expor a utilização do node e recursos do electron para o processo de renderização, 
+melhorando o desempenho e a segurança
+
+2- Para situações onde você sabe que vai precisar de certos recursos e dados antes que 
+o usuário solicite diretamente, tornando a experiência do usuário mais rápida e suave
 
 Obs: é possível tirar o contexto de isolamento e permitir a execução do node.js no processo de renderização
 
@@ -58,3 +60,18 @@ ipcMain.on(()=>{})
 ipcRenderer.on(()=>{})
 
 Fluxo: ipcRenderer -> hello() -> main.js (ipcMain)
+
+----------------------------------------------------------------------------
+
+Uso de framework (front-end) no electron
+
+- bootstrap
+    |__ local (download)
+
+Passo 1) fazer o download do css e js compilado
+Passo 2) descompactar e copiar o bootstrap.min.css e bootstrap.min.js para a pasta public
+Passo 3) link com os documentos HTML
+
+Para usar o bootstrap seguir a documentação:
+Dica: o bootstrap trabalha com conceitos de classe
+Inicie criando um container (div.container)
