@@ -84,3 +84,18 @@ Relação entre janelas (parent-child) e modal
 
 Passo 1: determinar a janela pai (principal)
 Passo 2: criar o relacionamento entre as janelas
+
+
+------------------------------------------------------------------------------
+IPC - comunicação segura entre Processos
+
+ipcMain (main.js)
+    ||-- preload.js
+
+ipcRenderer (renderer.js)
+
+Obs.: 
+1 - main.js (processor principal e único)
+2 - renderer.js (processo de renderização)
+    - podem existir vários processos de renderização
+    - renderer.js (nome atribuido / pode escolher qualquer nome)
