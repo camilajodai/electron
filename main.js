@@ -49,6 +49,24 @@ const aboutWindow = () => {
 
 }
 
+// janela secundária
+const childWindow = () => {
+  // a linha abaixo obtem a janela pai (principal)
+  const father = BrowserWindow.getFocusedWindow()
+  if (father) {
+    const child = new BrowserWindow({
+      width: 640,
+      height: 450,
+      icon: './src/public/img/icon.png',
+      autoHideMenuBar: true,
+      resizable: false,
+      parent: father,
+      modal: true
+    })
+    child.loadFile('./src/views/child.html')
+  }
+}
+
 // executar de forma assíncrona a aplicação
 app.whenReady().then(() => {
   createWindow()
@@ -60,6 +78,10 @@ const template = [
   {
     label: 'Arquivo',
     submenu: [
+      {
+        label: 'Janela secundária',
+        click: () => childWindow()
+      },
       {
         label: 'Sair',
         click: () => app.quit(),

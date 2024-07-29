@@ -75,3 +75,12 @@ Passo 3) link com os documentos HTML
 Para usar o bootstrap seguir a documentação:
 Dica: o bootstrap trabalha com conceitos de classe
 Inicie criando um container (div.container)
+
+---------------------------------------------------------------------------
+
+Relação entre janelas (parent-child) e modal
+- Foco do usuário no sistema 
+- Segurança e desempenho
+
+Passo 1: determinar a janela pai (principal)
+Passo 2: criar o relacionamento entre as janelas
