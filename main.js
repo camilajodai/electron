@@ -1,6 +1,6 @@
 
 
-const { app, BrowserWindow, nativeTheme, Menu, shell, ipcMain } = require('electron')
+const { app, BrowserWindow, nativeTheme, Menu, shell, ipcMain, dialog } = require('electron')
 
 // está relacionado ao preload.js
 const path = require('node:path')
@@ -151,4 +151,40 @@ ipcMain.on('send-message', (event, message) => {
 // exemplo 3: recebimento de um renderer de uma ação a ser executada
 ipcMain.on('open-about', () => {
   aboutWindow()
+})
+
+
+// dialogs
+ipcMain.on('dialog-info', () => {
+  dialog.showMessageBox({
+    type: "info",
+    title: "Título",
+    message: "Mensagem",
+    buttons: ['Ok']
+  })
+})
+
+// 
+ipcMain.on('dialog-warning', () => {
+  dialog.showMessageBox({
+    type: "warning",
+    title: "Atenção",
+    message: "Confirma a exclusão deste registro?",
+    buttons: ['Não', 'Sim']
+  }).then((result) => {
+    console.log(result)
+    if (result.response === 1) {
+      console.log("Registro excluído")
+    }
+  })
+})
+
+
+// explorador de arquivos
+ipcMain.on('dialog-select', () => {
+  dialog.showOpenDialog({
+    properties: ['openDirectory']
+  }).then((result) => {
+    console.log(result)
+  })
 })

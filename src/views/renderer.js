@@ -18,3 +18,18 @@ api.answer((event, message) => [
 function sobre() {
     api.openAbout()
 }
+
+// dialogs (caixa de msg)
+function info() {
+    api.info()
+}
+
+
+function warning() {
+    api.warning()
+}
+
+
+function select() {
+    api.select()
+}
